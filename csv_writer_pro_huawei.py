@@ -56,8 +56,8 @@ pattern = re.compile(r'(\d/)\s(\d/\d)\s+(\d{1,2})\s+.+(\d{8,10})(_.*)\((.*?)\)')
 lines = []
 
 for line in output:
-    line = re.findall(pattern, line)
-    if len(line) != 0:
+    if re.findall(pattern, line):
+        line = list(re.findall(pattern, str(line))[0])
         lines.append(line)
         # print(line)
         with open(os.path.join(host + '.csv'), 'w') as data:
